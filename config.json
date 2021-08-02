@@ -1,0 +1,14 @@
+{
+  "logging": {
+    "level": "DEBUG",
+    "date_strftime_format": "%d-%b-%y %H:%M:%S",
+    "message_format": "%(asctime)s - %(levelname)s - %(message)s",
+    "file_name": "log.txt"
+  },
+  "no_of_file_types": 4,
+  "no_of_days_of_data_present": 5,
+  "retry_count": 50,
+  "max_timeout_in_sec": 40,
+  "max_sleep_time_in_sec": 5,
+  "default_download_directory" : "/Users/deeksha/Downloads/"
+}
