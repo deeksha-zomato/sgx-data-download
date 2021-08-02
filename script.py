@@ -21,7 +21,6 @@ logging.basicConfig(level=config['logging']['level'],
                     format=config['logging']['message_format'],
                     datefmt=config['logging']['date_strftime_format'])
 
-
 sleep_time = config['max_sleep_time_in_sec']
 retry_count = config['retry_count']
 
@@ -86,8 +85,9 @@ def download_data(download_date):
     # Getting the type input box element
     for attempt in range(retry_count):
         try:
-            type = WebDriverWait(driver, config['max_timeout_in_sec']).until(EC.element_to_be_clickable((By.CSS_SELECTOR,
-                                                                                        "#page-container > template-base > div > div > section.col-xxs-12.col-md-9.template-widgets-section > div > sgx-widgets-wrapper > widget-research-and-reports-download:nth-child(4) > widget-reports-derivatives-tick-and-trade-cancellation > div > sgx-input-select:nth-child(1) > label > span.sgx-input-select-filter-wrapper > input")))
+            type = WebDriverWait(driver, config['max_timeout_in_sec']).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR,
+                                            "#page-container > template-base > div > div > section.col-xxs-12.col-md-9.template-widgets-section > div > sgx-widgets-wrapper > widget-research-and-reports-download:nth-child(4) > widget-reports-derivatives-tick-and-trade-cancellation > div > sgx-input-select:nth-child(1) > label > span.sgx-input-select-filter-wrapper > input")))
             time.sleep(sleep_time)
         except TimeoutException as ex:
             logging.error('Exception has been thrown for finding the type element: ' + str(ex))
@@ -103,8 +103,9 @@ def download_data(download_date):
     # Getting the date input box element
     for attempt in range(retry_count):
         try:
-            date = WebDriverWait(driver, config['max_timeout_in_sec']).until(EC.element_to_be_clickable((By.CSS_SELECTOR,
-                                                                                        "#page-container > template-base > div > div > section.col-xxs-12.col-md-9.template-widgets-section > div > sgx-widgets-wrapper > widget-research-and-reports-download:nth-child(4) > widget-reports-derivatives-tick-and-trade-cancellation > div > sgx-input-select:nth-child(2) > label > span.sgx-input-select-filter-wrapper > input")))
+            date = WebDriverWait(driver, config['max_timeout_in_sec']).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR,
+                                            "#page-container > template-base > div > div > section.col-xxs-12.col-md-9.template-widgets-section > div > sgx-widgets-wrapper > widget-research-and-reports-download:nth-child(4) > widget-reports-derivatives-tick-and-trade-cancellation > div > sgx-input-select:nth-child(2) > label > span.sgx-input-select-filter-wrapper > input")))
             time.sleep(sleep_time)
         except TimeoutException as ex:
             logging.error('Exception has been thrown for finding the date element: ' + str(ex))
@@ -120,8 +121,9 @@ def download_data(download_date):
     # Getting the download button element
     for attempt in range(retry_count):
         try:
-            download_button = WebDriverWait(driver, config['max_timeout_in_sec']).until(EC.element_to_be_clickable((By.CSS_SELECTOR,
-                                                                                                   "#page-container > template-base > div > div > section.col-xxs-12.col-md-9.template-widgets-section > div > sgx-widgets-wrapper > widget-research-and-reports-download:nth-child(4) > widget-reports-derivatives-tick-and-trade-cancellation > div > button")))
+            download_button = WebDriverWait(driver, config['max_timeout_in_sec']).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR,
+                                            "#page-container > template-base > div > div > section.col-xxs-12.col-md-9.template-widgets-section > div > sgx-widgets-wrapper > widget-research-and-reports-download:nth-child(4) > widget-reports-derivatives-tick-and-trade-cancellation > div > button")))
             time.sleep(sleep_time)
         except TimeoutException as ex:
             logging.error('Exception has been thrown for finding the download button element: ' + str(ex))
@@ -147,9 +149,12 @@ def download_data(download_date):
         if set_date(date, download_date):
             download_button.click()
             time.sleep(sleep_time)
+            print(type.get_attribute(
+                'value') + ' downloaded for date ' + download_date + '.')
             logging.info(type.get_attribute('value') + ' downloaded for date ' + download_date)
         else:
-            print(type.get_attribute('value') + ' cannot be downloaded for date ' + download_date+'. Please try for last 5 days.')
+            print(type.get_attribute(
+                'value') + ' cannot be downloaded for date ' + download_date + '. Please try for last 5 days.')
             logging.info(type.get_attribute('value') + ' cannot be downloaded for date ' + download_date)
 
     driver.close()
