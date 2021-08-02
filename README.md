@@ -30,3 +30,7 @@ Note: The date format should be `"%d %b %Y"` this only.
 4) https://links.sgx.com/1.0.0/derivatives-historical/4951/WEBPXTICK_DT.zip
 
 SGX hits these links with get method and the data gets downloaded. It increases the index if the data is published for next day. We can map date to index and download data for any given date.
+
+<h4>Challenges</h4>
+1) The input drop-down is read-only, we cannot send data to it, had to iterate throught all values to check if dowload_date is present or not.
+2) The type of file should be selected first and then the date should be selected, changing the type of file will change the date drop-down to its first value. Had to chhose the type of file and then iterate date drop-down fore every file type.
